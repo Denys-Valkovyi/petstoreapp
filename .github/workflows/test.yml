@@ -4,9 +4,9 @@ on:
   push:
     branches: [ "action-test" ]
 
- push:
-   tags:
-     - '*'
+  push:
+    tags:
+      - '*'
     
   workflow_dispatch:
     branches: [ "action-test" ]

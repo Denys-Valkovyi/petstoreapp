@@ -3,8 +3,6 @@ name: Test condition run
 on:
   push:
     branches: [ "action-test" ]
-
-  push:
     tags:
       - '*'
     

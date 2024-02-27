@@ -1,0 +1,19 @@
+name: Test condition run
+
+on:
+  workflow_dispatch:
+    branches: [ "action-test" ]
+    
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Check out source code
+      uses: actions/checkout@v3
+
+    - name: Build and push Docker image to Azure Container Registry
+      run: | 
+        echo ${{ github.sha }}
+        echo ${{ github.ref_name }}

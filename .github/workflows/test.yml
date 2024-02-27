@@ -2,7 +2,7 @@ name: Test condition run
 
 on:
   workflow_dispatch:
-    branches: [ "master" ]
+    branches: [ "action-test" ]
     
 
 jobs:

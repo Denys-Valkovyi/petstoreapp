@@ -8,6 +8,8 @@ env:
 on:
   push:
     branches: [ "master" ]
+    tags:
+     - '*'
   
   workflow_dispatch:
     branches: [ "master" ]
@@ -46,6 +48,7 @@ jobs:
 
     - name: Build and push Docker image to Azure Container Registry
       run: |
-        docker build . -t ${{ env.AZURE_CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest -t ${{env.AZURE_CONTAINER_REGISTRY}}/${{ env.IMAGE_NAME }}:${{ github.sha }}
-        docker push ${{ env.AZURE_CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ github.sha }}
+        dockerTag=${{ github.sha }} && [[ ${{ github.ref_name }} != "master" ]] && dockerTag=${{ github.ref_name }}
+        docker build . -t ${{ env.AZURE_CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest -t ${{env.AZURE_CONTAINER_REGISTRY}}/${{ env.IMAGE_NAME }}:$dockerTag
+        docker push ${{ env.AZURE_CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:$dockerTag
         docker push ${{ env.AZURE_CONTAINER_REGISTRY }}/${{ env.IMAGE_NAME }}:latest

@@ -3,6 +3,7 @@ name: Test condition run
 on:
   push:
     branches: [ "action-test" ]
+    
   workflow_dispatch:
     branches: [ "action-test" ]
     

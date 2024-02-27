@@ -25,4 +25,4 @@ jobs:
         echo 'github tag'
         echo ${{ github.ref_name }}
         dockerTag=$(( github.ref_name == "action-test" ? github.sha : github.ref_name ))  
-        echo ${{ dockerTag }}
+        echo $dockerTag

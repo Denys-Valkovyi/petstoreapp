@@ -1,8 +1,11 @@
 name: Test condition run
 
 on:
+  push:
+    branches: [ "action-test" ]
+    
   workflow_dispatch:
-    branches: [ "master" ]
+    branches: [ "action-test" ]
     
 
 jobs:
@@ -15,5 +18,6 @@ jobs:
 
     - name: Build and push Docker image to Azure Container Registry
       run: | 
+        echo 'github sha'
         echo ${{ github.sha }}
         echo ${{ github.ref_name }}

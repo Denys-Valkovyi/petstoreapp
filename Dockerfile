@@ -16,7 +16,8 @@ RUN mkdir -p /run/sshd && echo "root:Docker!" | chpasswd
 COPY sshd_config /etc/ssh/ 
 EXPOSE 2222 8080
 COPY --from=build /build/target/*.jar /app/petstoreapp.jar
-RUN curl -o applicationInsightsAgent.jar https://github.com/microsoft/ApplicationInsights-Java/releases/
-download/3.5.0/applicationinsights-agent-3.5.0.jar
+
+RUN curl -o applicationInsightsAgent.jar https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.5.0/applicationinsights-agent-3.5.0.jar
 COPY applicationInsightsAgent.jar applicationInsightsAgent.jar
+
 ENTRYPOINT ["/bin/bash", "-c", "/usr/sbin/sshd && java -javaagent:applicationInsightsAgent.jar -jar /app/petstoreapp.jar"]

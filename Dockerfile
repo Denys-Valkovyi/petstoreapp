@@ -18,6 +18,6 @@ EXPOSE 2222 8080
 COPY --from=build /build/target/*.jar /app/petstoreapp.jar
 
 RUN curl -o applicationInsightsAgent.jar https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.5.0/applicationinsights-agent-3.5.0.jar
-COPY applicationInsightsAgent.jar /agent/applicationInsightsAgent.jar
+COPY applicationInsightsAgent.jar /app/applicationInsightsAgent.jar
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/sbin/sshd && java -javaagent:/agent/applicationInsightsAgent.jar -jar /app/petstoreapp.jar"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/sbin/sshd && java -javaagent:/app/applicationInsightsAgent.jar -jar /app/petstoreapp.jar"]

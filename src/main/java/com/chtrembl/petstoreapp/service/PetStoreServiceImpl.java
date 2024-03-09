@@ -119,10 +119,10 @@ public class PetStoreServiceImpl implements PetStoreService {
 
 	@Override
 	public Collection<Product> getProducts(String category, List<Tag> tags) {
-		//this.sessionUser.getTelemetryClient()
-		//		.trackEvent(String.format(
-		//			"PetStoreApp user: %s, session: %s is requesting to get products with the PetStoreOrderService",
-		//			this.sessionUser.getName(), this.sessionUser.getSessionId()), this.sessionUser.getCustomEventProperties(), null);
+		this.sessionUser.getTelemetryClient()
+				.trackEvent(String.format(
+					"PetStoreApp user: %s, session: %s is requesting to get products with the PetStoreOrderService",
+					this.sessionUser.getName(), this.sessionUser.getSessionId()), this.sessionUser.getCustomEventProperties(), null);
 		List<Product> products = new ArrayList<>();
 
 		try {
@@ -176,7 +176,7 @@ public class PetStoreServiceImpl implements PetStoreService {
 			product.setId((long) 0);
 			products.add(product);
 		}
-        //logger.info("The returned amount of products for a user {} is {}", this.sessionUser.getName(), products.size());
+		this.sessionUser.getTelemetryClient().trackMetric("requestedProductQuantity", products.size());
 		return products;
 	}
 

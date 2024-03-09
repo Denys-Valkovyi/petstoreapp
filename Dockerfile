@@ -17,6 +17,5 @@ COPY sshd_config /etc/ssh/
 EXPOSE 2222 8080
 
 COPY --from=build /build/target/*.jar /app/petstoreapp.jar
-ADD https://github.com/microsoft/ApplicationInsights-Java/releases/download/3.5.0/applicationinsights-agent-3.5.0.jar /app
 
-ENTRYPOINT ["/bin/bash", "-c", "/usr/sbin/sshd && java -javaagent:/app/applicationinsights-agent-3.5.0.jar -jar /app/petstoreapp.jar"]
+ENTRYPOINT ["/bin/bash", "-c", "/usr/sbin/sshd && java -jar /app/petstoreapp.jar"]

@@ -30,7 +30,10 @@ import reactor.core.publisher.Mono;
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Dictionary;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
@@ -176,7 +179,9 @@ public class PetStoreServiceImpl implements PetStoreService {
 			product.setId((long) 0);
 			products.add(product);
 		}
-		this.sessionUser.getTelemetryClient().trackMetric("requestedProductQuantity", products.size());
+		Map<String, Double> metricData = new HashMap<>();
+		metricData.put("requestedQuantity", (double) products.size());
+		this.sessionUser.getTelemetryClient().trackEvent("requestedProductQuantity", null, metricData);
 		return products;
 	}
 

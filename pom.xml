@@ -23,7 +23,7 @@
         <jjwt.version>0.11.5</jjwt.version>
         <signalr.version>7.0.4</signalr.version>
         <log4j.version>2.20.0</log4j.version>
-        <applicationinsights.version>2.6.4</applicationinsights.version>
+        <applicationinsights.version>3.4.3</applicationinsights.version>
         <azure-active-directory.version>2.2.4</azure-active-directory.version>
         <spring-cloud-azure-starter.version>4.6.0</spring-cloud-azure-starter.version>
         <commons-lang3.version>3.12.0</commons-lang3.version>
@@ -54,11 +54,11 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
         </dependency>
-        <dependency>
-            <groupId>com.microsoft.azure</groupId>
-            <artifactId>applicationinsights-logging-logback</artifactId>
-            <version>${applicationinsights.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>com.microsoft.azure</groupId>
+			<artifactId>applicationinsights-core</artifactId>
+			<version>${applicationinsights.version}</version>
+		</dependency>
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>

@@ -152,9 +152,6 @@ public class PetStoreServiceImpl implements PetStoreService {
 				products = products.stream().filter(product -> category.equals(product.getCategory().getName())
 						&& product.getTags().toString().contains("small")).collect(Collectors.toList());
 			}
-			if (!products.isEmpty()) {
-				throw new Exception("Cannot move further");
-			}
 			return products;
 		} catch (
 
@@ -178,10 +175,7 @@ public class PetStoreServiceImpl implements PetStoreService {
 			product.setCategory(new Category());
 			product.setId((long) 0);
 			products.add(product);
-		} catch (Exception e) {
-			logger.error("The error happened: {}", e.getMessage());
-            throw new RuntimeException(e);
-        }
+		}
         //logger.info("The returned amount of products for a user {} is {}", this.sessionUser.getName(), products.size());
 		return products;
 	}

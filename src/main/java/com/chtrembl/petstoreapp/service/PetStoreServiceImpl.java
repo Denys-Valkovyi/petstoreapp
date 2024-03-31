@@ -48,7 +48,7 @@ public class PetStoreServiceImpl implements PetStoreService {
 	private final WebRequest webRequest;
 
 	@Autowired(required = false)
-	private JmsTemplate jmsTemplate = null;
+	private JmsTemplate jmsTemplate;
 
 	private WebClient petServiceWebClient = null;
 	private WebClient productServiceWebClient = null;
@@ -236,7 +236,9 @@ public class PetStoreServiceImpl implements PetStoreService {
 					.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
 					.configure(SerializationFeature.FAIL_ON_SELF_REFERENCES, false).writeValueAsString(updatedOrder);
 
+			logger.info("Jms is not null: " + this.jmsTemplate);
 			if (updatedOrder != null && this.jmsTemplate != null ) {
+				logger.info("Sending to JMS orders");
 				this.jmsTemplate.convertAndSend("orders", updatedOrderJSON);
 			}
 

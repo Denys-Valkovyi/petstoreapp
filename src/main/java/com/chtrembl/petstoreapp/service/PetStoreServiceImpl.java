@@ -17,9 +17,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -44,6 +46,9 @@ public class PetStoreServiceImpl implements PetStoreService {
 	private final User sessionUser;
 	private final ContainerEnvironment containerEnvironment;
 	private final WebRequest webRequest;
+
+	@Autowired(required = false)
+	private JmsTemplate jmsTemplate = null;
 
 	private WebClient petServiceWebClient = null;
 	private WebClient productServiceWebClient = null;
@@ -230,6 +235,10 @@ public class PetStoreServiceImpl implements PetStoreService {
 			String updatedOrderJSON = new ObjectMapper().setSerializationInclusion(Include.NON_NULL)
 					.disable(SerializationFeature.FAIL_ON_EMPTY_BEANS)
 					.configure(SerializationFeature.FAIL_ON_SELF_REFERENCES, false).writeValueAsString(updatedOrder);
+
+			if (updatedOrder != null && this.jmsTemplate != null ) {
+				this.jmsTemplate.convertAndSend("orders", updatedOrderJSON);
+			}
 
 			String response = this.reserverServiceWebClient.post().uri("/api/reserveorder")
 					.body(BodyInserters.fromPublisher(Mono.just(updatedOrderJSON), String.class))

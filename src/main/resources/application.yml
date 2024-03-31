@@ -44,3 +44,8 @@ spring:
     cache: false
   cache:
     cache-names: currentUsers
+  jms:
+    servicebus:
+      connection-string: ${PETSTOREORDERSERVICE_EMAIL_TOPIC_CONNECTION_STRING}
+      pricing-tier: Standard
+      topic-client-id: ${PETSTOREORDERSERVICE_SUBSCRIPTION_ID}

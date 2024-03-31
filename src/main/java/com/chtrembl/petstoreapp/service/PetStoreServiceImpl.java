@@ -53,7 +53,7 @@ public class PetStoreServiceImpl implements PetStoreService {
 	private WebClient petServiceWebClient = null;
 	private WebClient productServiceWebClient = null;
 	private WebClient orderServiceWebClient = null;
-	private WebClient reserverServiceWebClient = null;
+//	private WebClient reserverServiceWebClient = null;
 
 	public PetStoreServiceImpl(User sessionUser, ContainerEnvironment containerEnvironment, WebRequest webRequest) {
 		this.sessionUser = sessionUser;
@@ -70,8 +70,8 @@ public class PetStoreServiceImpl implements PetStoreService {
 				.baseUrl(this.containerEnvironment.getPetStoreProductServiceURL()).build();
 		this.orderServiceWebClient = WebClient.builder().baseUrl(this.containerEnvironment.getPetStoreOrderServiceURL())
 				.build();
-		this.reserverServiceWebClient = WebClient.builder().baseUrl(this.containerEnvironment.getPetStoreReserverServiceURL())
-				.build();
+//		this.reserverServiceWebClient = WebClient.builder().baseUrl(this.containerEnvironment.getPetStoreReserverServiceURL())
+//				.build();
 	}
 
 	@Override
@@ -242,15 +242,15 @@ public class PetStoreServiceImpl implements PetStoreService {
 				this.jmsTemplate.convertAndSend("orders", updatedOrderJSON);
 			}
 
-			String response = this.reserverServiceWebClient.post().uri("/api/reserveorder")
-					.body(BodyInserters.fromPublisher(Mono.just(updatedOrderJSON), String.class))
-					.accept(MediaType.APPLICATION_JSON)
-					.headers(consumer)
-					.header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
-					.header("Cache-Control", "no-cache")
-					.retrieve()
-					.bodyToMono(String.class).block();
-			logger.info("Response is: " + response);
+//			String response = this.reserverServiceWebClient.post().uri("/api/reserveorder")
+//					.body(BodyInserters.fromPublisher(Mono.just(updatedOrderJSON), String.class))
+//					.accept(MediaType.APPLICATION_JSON)
+//					.headers(consumer)
+//					.header("Content-Type", MediaType.APPLICATION_JSON_VALUE)
+//					.header("Cache-Control", "no-cache")
+//					.retrieve()
+//					.bodyToMono(String.class).block();
+//			logger.info("Response is: " + response);
 		} catch (Exception e) {
 			logger.warn(e.getMessage());
 		}

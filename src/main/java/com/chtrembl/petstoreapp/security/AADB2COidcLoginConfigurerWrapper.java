@@ -11,10 +11,10 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConditionalOnProperty({
-		"spring.cloud.azure.active-directory.b2c.base-uri",
-		"spring.cloud.azure.active-directory.b2c.credential.client-id",
-		"spring.cloud.azure.active-directory.b2c.credential.client-secret",
-		"spring.cloud.azure.active-directory.b2c.logout-success-url"
+		"azure.activedirectory.b2c.tenant",
+		"azure.activedirectory.b2c.client-id",
+		"azure.activedirectory.b2c.client-secret",
+		"azure.activedirectory.b2c.logout-success-url"
 })
 public class AADB2COidcLoginConfigurerWrapper {
 

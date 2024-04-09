@@ -47,8 +47,8 @@ spring:
       connection-string: ${SERVICE_BUS_ORDERS_TOPIC_CONNECTION_STRING}
       pricing-tier: Standard
       topic-client-id: ${SERVICE_BUS_SUBSCRIPTION_ID}
-  azure:
-    cloud:
+  cloud:
+    azure:
       active-directory:
         b2c:
           enabled: true

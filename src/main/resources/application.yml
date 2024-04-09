@@ -48,7 +48,7 @@ spring:
       pricing-tier: Standard
       topic-client-id: ${SERVICE_BUS_SUBSCRIPTION_ID}
   cloud:
-    activedirectory:
+    active-directory:
       b2c:
         enabled: true
         base-uri: https://${PETSTOREAPP_B2C_TENANT}.b2clogin.com/${PETSTOREAPP_B2C_TENANT}.onmicrosoft.com/

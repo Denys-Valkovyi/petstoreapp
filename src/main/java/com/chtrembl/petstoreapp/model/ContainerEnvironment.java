@@ -46,7 +46,7 @@ public class ContainerEnvironment implements Serializable {
 	private String appDate = null;
 	private String year = null;
 
-	private boolean securityEnabled = true;
+	private boolean securityEnabled = false;
 
 	@Value("${petstore.service.pet.url:}")
 	private String petStorePetServiceURL;

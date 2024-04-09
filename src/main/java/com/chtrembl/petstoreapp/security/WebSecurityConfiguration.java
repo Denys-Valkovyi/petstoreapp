@@ -25,6 +25,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	public void configure(WebSecurity web) throws Exception {
+		logger.info("aadB2COidcLoginConfigurerWrapper is: {}", this.aadB2COidcLoginConfigurerWrapper);
+		logger.info("getConfigurer() is: {}", this.aadB2COidcLoginConfigurerWrapper.getConfigurer());
 		if (this.aadB2COidcLoginConfigurerWrapper != null
 				&& this.aadB2COidcLoginConfigurerWrapper.getConfigurer() != null) {
 			web.ignoring().antMatchers("/content/**");
@@ -34,7 +36,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-
+		logger.info("http: aadB2COidcLoginConfigurerWrapper is: {}", this.aadB2COidcLoginConfigurerWrapper);
+		logger.info("http: getConfigurer() is: {}", this.aadB2COidcLoginConfigurerWrapper.getConfigurer());
 		if (this.aadB2COidcLoginConfigurerWrapper != null
 				&& this.aadB2COidcLoginConfigurerWrapper.getConfigurer() != null) {
 

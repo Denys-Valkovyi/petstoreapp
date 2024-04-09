@@ -50,6 +50,7 @@ spring:
   cloud:
     activedirectory:
       b2c:
+        enabled: true
         base-uri: https://${PETSTOREAPP_B2C_TENANT}.b2clogin.com/${PETSTOREAPP_B2C_TENANT}.onmicrosoft.com/
         oidc-enabled: true
         credential:
@@ -63,6 +64,6 @@ spring:
           password-reset: B2C_1_resetpassword
         user-name-attribute-name: name
 
-azure:
+#azure:
   #  application-insights:
   #      instrumentation-key: ${PETSTORESERVICES_AI_INSTRUMENTATION_KEY}

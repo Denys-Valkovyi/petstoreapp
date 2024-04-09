@@ -47,18 +47,22 @@ spring:
       connection-string: ${SERVICE_BUS_ORDERS_TOPIC_CONNECTION_STRING}
       pricing-tier: Standard
       topic-client-id: ${SERVICE_BUS_SUBSCRIPTION_ID}
+  cloud:
+    activedirectory:
+      b2c:
+        base-uri: https://${PETSTOREAPP_B2C_TENANT}.b2clogin.com/${PETSTOREAPP_B2C_TENANT}.onmicrosoft.com/
+        oidc-enabled: true
+        credential:
+          client-id: ${PETSTOREAPP_B2C_CLIENT_ID}
+          client-secret: ${PETSTOREAPP_B2C_CLIENT_SECRET}
+        login-flow: sign-up-or-sign-in
+        logout-success-url: ${PETSTOREAPP_B2C_LOGOUT_URL}
+        user-flows:
+          sign-up-or-sign-in: B2C_1_signupsignin
+          profile-edit: B2C_1_profileediting
+          password-reset: B2C_1_resetpassword
+        user-name-attribute-name: name
+
 azure:
   #  application-insights:
   #      instrumentation-key: ${PETSTORESERVICES_AI_INSTRUMENTATION_KEY}
-  activedirectory:
-    b2c:
-      tenant: ${PETSTOREAPP_B2C_TENANT}
-      oidc-enabled: true
-      client-id: ${PETSTOREAPP_B2C_CLIENT_ID}
-      client-secret: ${PETSTOREAPP_B2C_CLIENT_SECRET}
-      reply-url: ${PETSTOREAPP_B2C_REPLY_URL}
-      logout-success-url: ${PETSTOREAPP_B2C_LOGOUT_URL}
-      user-flows:
-        sign-up-or-sign-in: B2C_1_signupsignin
-        profile-edit: B2C_1_profileediting
-        password-reset: B2C_1_resetpassword

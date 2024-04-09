@@ -1,6 +1,6 @@
 package com.chtrembl.petstoreapp.security;
 
-import com.microsoft.azure.spring.autoconfigure.b2c.AADB2COidcLoginConfigurer;
+import com.azure.spring.cloud.autoconfigure.aadb2c.AadB2cOidcLoginConfigurer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.stereotype.Component;
@@ -11,21 +11,21 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ConditionalOnProperty({
-		"azure.activedirectory.b2c.tenant",
-		"azure.activedirectory.b2c.client-id",
-		"azure.activedirectory.b2c.client-secret",
-		"azure.activedirectory.b2c.logout-success-url"
+		"spring.cloud.azure.active-directory.b2c.base-uri",
+		"spring.cloud.azure.active-directory.b2c.credential.client-id",
+		"spring.cloud.azure.active-directory.b2c.credential.client-secret",
+		"spring.cloud.azure.active-directory.b2c.logout-success-url"
 })
 public class AADB2COidcLoginConfigurerWrapper {
 
 	@Autowired(required = false)
-	private AADB2COidcLoginConfigurer configurer = null;
+	private AadB2cOidcLoginConfigurer configurer = null;
 
-	public AADB2COidcLoginConfigurer getConfigurer() {
+	public AadB2cOidcLoginConfigurer getConfigurer() {
 		return configurer;
 	}
 
-	public void setConfigurer(AADB2COidcLoginConfigurer configurer) {
+	public void setConfigurer(AadB2cOidcLoginConfigurer configurer) {
 		this.configurer = configurer;
 	}
 }

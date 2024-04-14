@@ -82,6 +82,7 @@ public class WebAppController {
 
 		if (token != null) {
 			final OAuth2User user = token.getPrincipal();
+			logger.info("Token: {}, User principal - {}", token, user);
 
 			try {
 				this.sessionUser.setEmail((String) ((JSONArray) user.getAttribute("emails")).get(0));
@@ -102,10 +103,12 @@ public class WebAppController {
 				this.sessionUser.setInitialTelemetryRecorded(true);
 			}
 			model.addAttribute("claims", user.getAttributes());
+			logger.info("User attributes {}", user.getAttributes());
 			model.addAttribute("user", this.sessionUser.getName());
+			logger.info("User name {}", this.sessionUser.getName());
 			model.addAttribute("grant_type", user.getAuthorities());
 		}
-
+		logger.info("Token is null");
 		model.addAttribute("userName", this.sessionUser.getName());
 		model.addAttribute("containerEnvironment", this.containerEnvironment);
 

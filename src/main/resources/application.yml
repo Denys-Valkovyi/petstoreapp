@@ -58,7 +58,7 @@ spring:
           oidc-enabled: true
           credential:
             client-id: ${PETSTOREAPP_B2C_CLIENT_ID}
-            client-secret: ${PETSTOREAPP_B2C_CLIENT_SECRET}
+            client-secret: '${PETSTOREAPP_B2C_CLIENT_SECRET}'
           login-flow: sign-up-or-sign-in
           logout-success-url: ${PETSTOREAPP_B2C_LOGOUT_URL}
           user-flows:

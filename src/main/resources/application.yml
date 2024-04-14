@@ -15,8 +15,6 @@ petstore:
   logging:
     additional-headers-to-log: ${PETSTORE_ADDITIONAL_HEADERS_TO_LOG:}
     additional-headers-to-send: ${PETSTORE_ADDITIONAL_HEADERS_TO_SEND:}
-    level:
-      org.springframework.security: debug
   signalR:
     negotiation-url: ${SIGNALR_NEGOTIATION_URL:}
     service-url: ${SIGNALR_SERVICE_URL:}

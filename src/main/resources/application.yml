@@ -65,6 +65,6 @@ spring:
             password-reset: B2C_1_resetpassword
           user-name-attribute-name: name
 
-#azure:
-  #  application-insights:
-  #      instrumentation-key: ${PETSTORESERVICES_AI_INSTRUMENTATION_KEY}
+azure:
+  application-insights:
+    instrumentation-key: ${PETSTORESERVICES_AI_INSTRUMENTATION_KEY}
